@@ -26,3 +26,4 @@ with st.form("entry_form", clear_on_submit=True):
 # --- DISPLAY SECTION (Coming Soon) ---
 st.divider()
 st.info("Charts and Google Sheets sync will appear here once connected.")
+Create initial app file

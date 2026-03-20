@@ -2,28 +2,24 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="JPhisabkitab", layout="centered")
+# 1. Page Setup
+st.set_page_config(page_title="JPhisabkitab", page_icon="💰")
 
 st.title("💰 JPhisabkitab")
-st.subheader("Personal Expense Manager")
+st.write("Welcome, JP. Log your personal expenses below.")
 
-# --- INPUT SECTION ---
-with st.form("entry_form", clear_on_submit=True):
+# 2. Simple Entry Form
+with st.form("my_form", clear_on_submit=True):
     date = st.date_input("Date", datetime.now())
-    amount = st.number_input("Amount (₹)", min_value=0, step=10)
-    category = st.selectbox("Category", ["Food", "Transport", "Bills", "Shopping", "Other"])
-    note = st.text_input("Note (e.g. Dinner with friends)")
+    amount = st.number_input("Amount (₹)", min_value=0, step=1)
+    category = st.selectbox("Category", ["Food", "Transport", "Rent", "Shopping", "Other"])
+    note = st.text_input("Description")
     
-    submitted = st.form_submit_button("Log Expense")
-    if submitted:
-        if amount > 0:
-            st.success(f"Logged: ₹{amount} for {category}")
-            # Later, we will add the code here to save to Google Sheets
-        else:
-            st.error("Please enter an amount.")
+    submit = st.form_submit_button("Save Expense")
 
-# --- DISPLAY SECTION (Coming Soon) ---
-st.divider()
-st.info("Charts and Google Sheets sync will appear here once connected.")
-Create initial app file
+# 3. Success Message
+if submit:
+    if amount > 0:
+        st.success(f"Successfully recorded ₹{amount} for {category}!")
+    else:
+        st.warning("Please enter an amount greater than 0.")
